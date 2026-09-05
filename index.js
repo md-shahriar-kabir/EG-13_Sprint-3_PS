@@ -181,3 +181,37 @@ var threeSum = function(nums) {
 
     return result;
 };
+
+
+// --------------------------------------------------------------------
+// --------------------------------------------------------------------
+
+// 07. Subarray Sum Equals K
+// Write a function that counts the total number of continuous subarrays whose elements add up exactly to a given integer k.
+
+// /**
+//  * @param {number[]} nums
+//  * @param {number} k
+//  * @return {number}
+//  */
+
+var subarraySum = function(nums, k) {
+    let count = 0;
+    let currentSum = 0;
+    
+    const prefixSumMap = new Map();
+    
+    prefixSumMap.set(0, 1);
+
+    for (let num of nums) {
+        currentSum += num;
+
+        if (prefixSumMap.has(currentSum - k)) {
+            count += prefixSumMap.get(currentSum - k);
+        }
+
+        prefixSumMap.set(currentSum, (prefixSumMap.get(currentSum) || 0) + 1);
+    }
+
+    return count;
+};
