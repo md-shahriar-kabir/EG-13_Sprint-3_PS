@@ -81,3 +81,32 @@ var isAnagram = function(s, t) {
 
     return true;
 };
+
+// --------------------------------------------------------------------
+// --------------------------------------------------------------------
+
+// 04. Ransom Note
+// Write a validation function that determines whether a ransom note can be constructed using characters from a given magazine string. Each character can only be used once.
+
+// /**
+// * @param {string} ransomNote
+// * @param {string} magazine
+// * @return {boolean}
+// */
+
+var canConstruct = function(ransomNote, magazine) {
+    const charCounts = {};
+
+    for (const char of magazine) {
+        charCounts[char] = (charCounts[char] || 0) + 1;
+    }
+
+    for (const char of ransomNote) {
+        if (!charCounts[char] || charCounts[char] === 0) {
+            return false;
+        }
+        charCounts[char]--;
+    }
+
+    return true;
+};
