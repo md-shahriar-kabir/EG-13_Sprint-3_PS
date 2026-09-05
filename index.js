@@ -110,3 +110,29 @@ var canConstruct = function(ransomNote, magazine) {
 
     return true;
 };
+
+
+// --------------------------------------------------------------------
+// --------------------------------------------------------------------
+
+// 05. Majority Element
+// Write a function that identifies the element that appears more than n / 2 times in an array.
+
+// /**
+// * @param {number[]} nums
+// * @return {number}
+// */
+
+var majorityElement = function(nums) {
+    let candidate = null;
+    let count = 0;
+
+    for (const num of nums) {
+        if (count === 0) {
+            candidate = num;
+        }
+        count += (num === candidate) ? 1 : -1;
+    }
+
+    return candidate;
+};
