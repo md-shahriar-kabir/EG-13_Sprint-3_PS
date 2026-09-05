@@ -286,3 +286,37 @@ var longestConsecutive = function(nums) {
 
     return longestStreak;
 };
+
+// --------------------------------------------------------------------
+// --------------------------------------------------------------------
+
+// 10. Sort Colors
+// Write an in-place sorting function that sorts an array containing only 0, 1, and 2 so that the same colors are grouped together in ascending order.
+
+// /**
+//  * @param {number[]} nums
+//  * @return {void} Do not return anything, modify nums in-place instead.
+//  */
+
+    var sortColors = function(nums) {
+        let low = 0;
+        let mid = 0;
+        let high = nums.length - 1;
+
+        while (mid <= high) {
+            if (nums[mid] === 0) {
+
+                [nums[low], nums[mid]] = [nums[mid], nums[low]];
+                low++;
+                mid++;
+            } else if (nums[mid] === 1) {
+
+                mid++;
+            } else {
+
+                [nums[mid], nums[high]] = [nums[high], nums[mid]];
+                high--;
+            }
+        }
+    };
+
