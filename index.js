@@ -215,3 +215,39 @@ var subarraySum = function(nums, k) {
 
     return count;
 };
+
+
+// --------------------------------------------------------------------
+// --------------------------------------------------------------------
+
+// 08. Top K Frequent Elements
+// Write a function that returns the k most frequent elements from an integer array.
+
+// /**
+//  * @param {number[]} nums
+//  * @param {number} k
+//  * @return {number[]}
+//  */
+
+var topKFrequent = function(nums, k) {
+    const map = new Map();
+    const buckets = Array.from({ length: nums.length + 1 }, () => []);
+
+    for (let num of nums) {
+        map.set(num, (map.get(num) || 0) + 1);
+    }
+
+    for (let [num, freq] of map.entries()) {
+        buckets[freq].push(num);
+    }
+
+    const result = [];
+
+    for (let i = buckets.length - 1; i >= 0 && result.length < k; i--) {
+        if (buckets[i].length > 0) {
+            result.push(...buckets[i]);
+        }
+    }
+
+    return result.slice(0, k);
+};
